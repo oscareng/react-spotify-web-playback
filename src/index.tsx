@@ -183,9 +183,8 @@ class SpotifyWebPlayer extends React.PureComponent<Props, State> {
       ? !isEqualArray(previousProps.uris, uris)
       : previousProps.uris !== uris;
     const playOptions = this.getPlayOptions(uris);
-
     const canPlay = !!currentDeviceId && !!(playOptions.context_uri || playOptions.uris);
-    const shouldPlay = (changedURIs && isPlaying) || !!(isReady && (autoPlay || playProp));
+    const shouldPlay = (changedURIs) || !!(isReady && (autoPlay || playProp));
 
     if (canPlay && shouldPlay) {
       await play(token, { deviceId: currentDeviceId, offset, ...playOptions });
